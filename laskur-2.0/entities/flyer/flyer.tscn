@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6jw3w14p64wl"]
+
+[ext_resource type="Script" path="res://entities/flyer/flyer.gd" id="1_l4piw"]
+[ext_resource type="Texture2D" uid="uid://0el8100gtjw3" path="res://sprites/tilemap.png" id="2_hdsld"]
+[ext_resource type="Script" path="res://classes/hitbox.gd" id="3_3tv5o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvcy"]
+size = Vector2(8, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmkww"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqt1o"]
+atlas = ExtResource("2_hdsld")
+region = Rect2(51, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64dpv"]
+atlas = ExtResource("2_hdsld")
+region = Rect2(68, 85, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxd53"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqt1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64dpv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Flyer" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4
+script = ExtResource("1_l4piw")
+sprite = NodePath("AnimatedSprite2D")
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7nvcy")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_3tv5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_kmkww")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bxd53")
+autoplay = "default"
+frame_progress = 0.193475

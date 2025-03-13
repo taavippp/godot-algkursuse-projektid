@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://df2dly2quosqa"]
+
+[ext_resource type="Script" path="res://enemy_manager.gd" id="1_u6e41"]
+[ext_resource type="PackedScene" uid="uid://b22yoj7ptjao" path="res://entities/crawler/crawler.tscn" id="2_5v0dp"]
+[ext_resource type="PackedScene" uid="uid://c6jw3w14p64wl" path="res://entities/flyer/flyer.tscn" id="3_52dhl"]
+
+[node name="EnemyManager" type="Node2D"]
+script = ExtResource("1_u6e41")
+enemy_scenes = Array[PackedScene]([ExtResource("2_5v0dp"), ExtResource("3_52dhl")])
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

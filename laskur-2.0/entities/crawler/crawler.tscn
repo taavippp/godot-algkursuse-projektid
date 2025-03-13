@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://b22yoj7ptjao"]
+
+[ext_resource type="Texture2D" uid="uid://0el8100gtjw3" path="res://sprites/tilemap.png" id="1_48pam"]
+[ext_resource type="Script" path="res://entities/crawler/crawler.gd" id="1_vca1b"]
+[ext_resource type="Script" path="res://classes/hitbox.gd" id="3_nhi86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m150w"]
+size = Vector2(10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxvks"]
+atlas = ExtResource("1_48pam")
+region = Rect2(85, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q8vm"]
+atlas = ExtResource("1_48pam")
+region = Rect2(102, 85, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1nex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxvks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q8vm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7254y"]
+radius = 4.0
+height = 10.0
+
+[node name="Crawler" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 4
+script = ExtResource("1_vca1b")
+sprite = NodePath("AnimatedSprite2D")
+speed = 75.0
+max_health = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_m150w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o1nex")
+autoplay = "default"
+frame_progress = 0.940092
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_nhi86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7254y")
