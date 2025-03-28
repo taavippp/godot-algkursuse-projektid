@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	velocity.x = speed * direction
-	if (is_on_wall()):
+	if is_on_wall():
 		queue_free() # kustutab sõlme
 	move_and_slide()
 

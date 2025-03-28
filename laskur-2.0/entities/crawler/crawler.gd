@@ -3,7 +3,7 @@ extends Entity
 @export var sprite: AnimatedSprite2D
 
 func _process(delta: float) -> void:
-	if (is_on_wall()):
+	if is_on_wall():
 		direction = direction * -1.0
 	velocity.x = speed * direction
 	velocity.y += gravity

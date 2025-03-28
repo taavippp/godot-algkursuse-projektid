@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func take_damage() -> void:
 	health = health - 1
-	if (health <= 0):
+	if health <= 0:
 		died.emit()
 		queue_free()
 		return

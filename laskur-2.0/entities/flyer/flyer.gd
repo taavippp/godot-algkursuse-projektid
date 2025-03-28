@@ -4,7 +4,7 @@ extends Entity
 
 func _ready() -> void:
 	super() # kutsub oma ülemklassi (ehk Entity) _ready() funktsiooni
-	sprite.flip_h = direction < 0.0
+	sprite.flip_h = (direction < 0.0)
 	var tween = create_tween()
 	# paneb Tweeni animatsiooni korduma
 	# vajaduse korral saab ka korduste arvu kirjutada, aga tahame et ta jääkski korduma

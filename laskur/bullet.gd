@@ -10,13 +10,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	velocity.x = speed * direction
-	if (is_on_wall()):
+	if is_on_wall():
 		queue_free() # kustutab sõlme
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	# eelnevates versioonides kasutati "not is", sest "is not" on üks uus võtmesõna, aga "not" ja "is" on eraldi
-	if (body is not CharacterBody2D):
+	if body is not CharacterBody2D:
 		return
 	# kustutab pihta saanud sõlme ja iseenda
 	body.queue_free()
